@@ -13,7 +13,6 @@ filelock==3.0.12
 idna==2.10
 iniconfig==1.1.1
 mysql-connector-python==8.0.21
-mysqlclient @ file:///C:/Users/USER/Downloads/mysqlclient-1.4.6-cp39-cp39-win_amd64.whl
 numpy==1.19.4
 openpyxl==3.0.7
 packaging==20.9
