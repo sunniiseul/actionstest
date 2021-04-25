@@ -5,8 +5,9 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 
 write_wb = Workbook()
-write_ws = write_wb.create_sheet('schedule')
+#write_ws = write_wb.create_sheet('schedule')
 write_ws = write_wb.active
+write_ws.append(["Company", "Date", "Time", "Product"])
 
 datelist = []
 
@@ -76,5 +77,29 @@ for i in datelist:
             #prd_names = re.sub('^{30}', '', prd_names, 0).strip()
             write_ws.append(["GSHOP_DATA", i, live_time, product])
             #print(live_time, product)
+
+url = "http://display.cjmall.com/p/homeTab/main?hmtabMenuId=002409&rPIC=schedulePC#bdDt%3A{}"
+#driver.get("https://www.gsshop.com/shop/tv/tvScheduleMain.gs?lseq=415680-1&gsid=ECmain-AU415680-AU415680-1#{}_LIVE")
+
+for i in datelist:
+    link = url.format(i)
+    print(link)
+    driver.get(link)
+    #driver.implicitly_wait(2)
+    time.sleep(3)
+
+    html = driver.page_source
+    soup = BeautifulSoup(html, 'html.parser')
+
+    timeslots = soup.select("span.pgmDtm")
+    productdiv = soup.select("ul.list_schedule_prod")
+    k = 0
+
+    for prd in productdiv:
+        titleslot = prd.select("strong.tit_prod")
+        for tit in titleslot:
+            product = tit.select_one("span").text.strip()
+            write_ws.append(["O_Shopping", i, timeslots[k].text.strip(), product])
+        k = k + 1
 
 write_wb.save("./Schedule.xlsx")
