@@ -36,8 +36,8 @@ jobs:
         # flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
         python main.py
     - name: Commit
-        run: |
-          git commit -m "Auto Commit"
+      run: |
+        git commit -m "Auto Commit"
     - name: Push
       uses: ad-m/github-push-action@master
       with:
