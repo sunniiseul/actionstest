@@ -77,4 +77,4 @@ for i in datelist:
             write_ws.append(["GSHOP_DATA", i, live_time, product])
             #print(live_time, product)
 
-write_wb.save("C:/Users/USER/Downloads/Schedule.xlsx")
+write_wb.save("C:\Users\USER\Downloads\Schedule.xlsx")
