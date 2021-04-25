@@ -1,12 +1,8 @@
 import time
 from datetime import date, timedelta
-import re
-import csv
-import openpyxl
 from selenium import webdriver
-import urllib
-import requests
 from bs4 import BeautifulSoup
+import openpyxl
 
 datelist = []
 
@@ -17,7 +13,7 @@ for i in range(0,7):
     raw_date = raw_date + timedelta(days=1)
     i = i + 1
 
-f = open('schedule.csv', 'w', encoding='utf-8')
+f = open('C:\schedule.csv', 'w', encoding='utf-8')
 
 driver = webdriver.Chrome("./chromedriver")
 
